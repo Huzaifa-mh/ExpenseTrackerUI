@@ -1,0 +1,48 @@
+import axios from "axios";
+import type { Expense, CreateExpenseDTO, ExpenseSummary, Category } from "../types/expense.ts";
+
+
+//API base URL
+const API_BASE_URL = "https://localhost:7026/api";
+
+const api= axios.create({
+    baseURL: API_BASE_URL,
+    headers:{
+        'Content-Type': 'application/json',
+    },
+});
+
+export const expenseAPI = {
+
+    // getExpenses(){ async (startDate: string, endDate: string): Promise<Expense[]> => {
+    //     const params: Record<string, string> = {};
+    //     if(startDate) params.startDate = startDate;
+    //     if(endDate) params.endDate = endDate;
+
+    //     const response = await api.get<Expense[]>('/expenses', {params});
+    //     return response.data;
+    //     }
+    // }
+
+    async getExpenses(startDate: string, endDate: string): Promise<Expense[]> {
+        const params: Record<string, string> = {};
+        if(startDate) params.startDate = startDate;
+        if(endDate) params.endDate = endDate;
+
+        const response = await api.get<Expense[]>('/expenses', {params});
+        return response.data;
+    },
+
+    async getExpenseByID(id: number): Promise<Expense> {
+        const response = await api.get<Expense>(`/expenses/${id}`);
+        return response.data;
+    },
+
+
+    async createExpense(expenseDate: CreateExpenseDTO): Promise<Expense> {
+        const response = await api.post<Expense>('/expenses', expenseDate);
+        return response.data;
+    },
+
+    
+}
