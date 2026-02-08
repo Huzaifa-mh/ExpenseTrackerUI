@@ -55,7 +55,7 @@ export const expenseAPI = {
 
 };
 
-export const catrgoryAPI = {
+export const categoryAPI = {
     async getCategories(): Promise<Category[]> {
         const response = await api.get<Category[]>('/categories');
         return response.data;
