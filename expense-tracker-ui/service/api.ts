@@ -44,5 +44,20 @@ export const expenseAPI = {
         return response.data;
     },
 
-    
-}
+    async deleteExpense(id: number): Promise<void> {
+        await api.delete(`/expenses/${id}`);
+    },
+
+    async getSummary(): Promise<ExpenseSummary[]> {
+        const response = await api.get<ExpenseSummary[]>('/expenses/summary');
+        return response.data;
+    },
+
+};
+
+export const catrgoryAPI = {
+    async getCategories(): Promise<Category[]> {
+        const response = await api.get<Category[]>('/categories');
+        return response.data;
+    },
+};
