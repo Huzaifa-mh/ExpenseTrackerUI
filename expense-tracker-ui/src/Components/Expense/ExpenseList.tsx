@@ -1,31 +1,39 @@
-import { useState, useEffect } from 'react';
-import { expenseAPI } from '../../service/api';
-import type { Expense } from '../../types/expense';
-import ExpenseCard from './ExpenseCard';
+import { useState, useEffect } from "react";
+import { expenseAPI } from "../../service/api";
+import type { Expense } from "../../types/expense";
+import ExpenseCard from "./ExpenseCard";
+import DateFilter from "./DateFilter";
 
 interface ExpenseListProps {
-    refreshTrigger: number;
+  refreshTrigger: number;
 }
 
-function ExpenseList({ refreshTrigger} : ExpenseListProps) {
+function ExpenseList({ refreshTrigger }: ExpenseListProps) {
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
+  const [dateFilter, setDateFilter] = useState<{
+    startDate?: string;
+    endDate?: string;
+  }>({});
 
   // Fetch expenses when component mounts
   useEffect(() => {
     fetchExpenses();
-  }, [refreshTrigger]);
+  }, [refreshTrigger, dateFilter]);
 
   const fetchExpenses = async () => {
     try {
       setLoading(true);
-      const data = await expenseAPI.getExpenses();
+      const data = await expenseAPI.getExpenses(
+        dateFilter.startDate,
+        dateFilter.endDate,
+      );
       setExpenses(data);
-      setError('');
+      setError("");
     } catch (err) {
-      console.error('Error fetching expenses:', err);
-      setError('Failed to load expenses');
+      console.error("Error fetching expenses:", err);
+      setError("Failed to load expenses");
     } finally {
       setLoading(false);
     }
@@ -37,9 +45,17 @@ function ExpenseList({ refreshTrigger} : ExpenseListProps) {
       // Refresh the list after successful deletion
       await fetchExpenses();
     } catch (err) {
-      console.error('Error deleting expense:', err);
-      alert('Failed to delete expense. Please try again.');
+      console.error("Error deleting expense:", err);
+      alert("Failed to delete expense. Please try again.");
     }
+  };
+
+  const handleFilter = (startDate: string, endDate: string) => {
+    setDateFilter({ startDate, endDate });
+  };
+
+  const handleClearFilter = () => {
+    setDateFilter({});
   };
 
   // Loading state
@@ -78,24 +94,25 @@ function ExpenseList({ refreshTrigger} : ExpenseListProps) {
 
   // Display expenses
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 ">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">
-          📋 Your Expenses
-        </h2>
-        <span className="text-sm text-gray-600">
-          {expenses.length} {expenses.length === 1 ? 'expense' : 'expenses'}
-        </span>
-      </div>
+    <div>
+      <DateFilter onFilter={handleFilter} onClear={handleClearFilter} />
+      <div className="bg-white rounded-lg shadow-md p-6 ">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">📋 Your Expenses</h2>
+          <span className="text-sm text-gray-600">
+            {expenses.length} {expenses.length === 1 ? "expense" : "expenses"}
+          </span>
+        </div>
 
-      <div className="space-y-3">
-        {expenses.map((expense) => (
-          <ExpenseCard
-            key={expense.id}
-            expense={expense}
-            onDelete={handleDelete}
-          />
-        ))}
+        <div className="space-y-3">
+          {expenses.map((expense) => (
+            <ExpenseCard
+              key={expense.id}
+              expense={expense}
+              onDelete={handleDelete}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

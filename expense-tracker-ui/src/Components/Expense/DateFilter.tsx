@@ -29,7 +29,7 @@ function DateFilter({ onFilter, onClear }: DateFilterProps) {
 
       <form onSubmit={handleSubmit} className="flex flex-wrap gap-4 item-end">
         {/* startdate */}
-        <div className="">
+        <div className="flex-1 min-w-[200px]">
           <label
             htmlFor="startDate"
             className="block text-sm font-medium text-gray-700 mb-2"
@@ -44,7 +44,22 @@ function DateFilter({ onFilter, onClear }: DateFilterProps) {
             className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-bluw-500 outline-none text-gray-900"
           />
         </div>
+
+        {/* enddate */}
+        <div>
+            <label htmlFor="endDate" className="block text-sm font-medium text-gray-700 mb-2">To</label>
+
+            <input type="date" id="endDate" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-bluw-500 outline-none text-gray-900" />
+        </div>
+
+        <div>
+            <button type="submit" disabled={!startDate || !endDate} className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700  disabled:bg-gray-400 disabled:cursor-not-allowed font-medium transition-colors">Filter</button>
+
+            <button type="button" onClick={handleClear} className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium transition-colors">Clear</button>
+        </div>
       </form>
     </div>
   );
 }
+
+export default DateFilter;
