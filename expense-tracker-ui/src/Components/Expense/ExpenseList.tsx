@@ -4,6 +4,7 @@ import type { Expense } from "../../types/expense";
 import ExpenseCard from "./ExpenseCard";
 import DateFilter from "./DateFilter";
 
+
 interface ExpenseListProps {
   refreshTrigger: number;
 }
@@ -25,11 +26,14 @@ function ExpenseList({ refreshTrigger }: ExpenseListProps) {
   const fetchExpenses = async () => {
     try {
       setLoading(true);
+      console.log("Fetching expenses with filter:",{start: dateFilter.startDate, end: dateFilter.endDate});
       const data = await expenseAPI.getExpenses(
         dateFilter.startDate,
-        dateFilter.endDate,
+        dateFilter.endDate
       );
       setExpenses(data);
+
+      console.log("Fetched expenses:", data);
       setError("");
     } catch (err) {
       console.error("Error fetching expenses:", err);
