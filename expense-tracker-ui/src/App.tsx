@@ -1,18 +1,40 @@
 
 import './App.css'
 import AddExpense from './Components/Expense/AddExpense'
+import ExpenseList from './Components/Expense/ExpenseList'
 
 function App() {
-  
 
+    
   return (
-    <div className='min-h-screen bg-gray-50 py-8'>
-      <div className='container mx-auto px-4'>
-        <h1 className='text-4xl font-bold text-center text-gray-800 mb-8'>
-          💰 Personal Expense Tracker
-        </h1>
-        <AddExpense />
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-200">
+        <div className="px-8 py-6">
+          <h1 className="text-4xl font-bold text-gray-800">
+            💰 Personal Expense Tracker
+          </h1>
+        </div>
+      </header>
+
+      {/* Main Content - FULL WIDTH, NO PADDING */}
+      <main className="p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          {/* Left: Add Expense Form (sticky on scroll) */}
+          <div className="lg:col-span-1">
+            <div className="lg:sticky lg:top-8">
+              <AddExpense />
+            </div>
+          </div>
+
+          {/* Right: Expense List */}
+          <div className="lg:col-span-2">
+            <ExpenseList />
+          </div>
+
+        </div>
+      </main>
     </div>
   )
 }

@@ -14,7 +14,7 @@ const api= axios.create({
 
 export const expenseAPI = {
 
-    // getExpenses(){ async (startDate: string, endDate: string): Promise<Expense[]> => {
+    // getExpenses(){ async (startDate?: string, endDate?: string): Promise<Expense[]> => {
     //     const params: Record<string, string> = {};
     //     if(startDate) params.startDate = startDate;
     //     if(endDate) params.endDate = endDate;
@@ -22,9 +22,9 @@ export const expenseAPI = {
     //     const response = await api.get<Expense[]>('/expenses', {params});
     //     return response.data;
     //     }
-    // }
+    // },
 
-    async getExpenses(startDate: string, endDate: string): Promise<Expense[]> {
+    async getExpenses(startDate?: string, endDate?: string): Promise<Expense[]> {
         const params: Record<string, string> = {};
         if(startDate) params.startDate = startDate;
         if(endDate) params.endDate = endDate;
