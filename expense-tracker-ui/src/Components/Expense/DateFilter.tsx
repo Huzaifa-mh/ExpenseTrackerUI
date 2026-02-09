@@ -12,9 +12,7 @@ function DateFilter({ onFilter, onClear }: DateFilterProps) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log("🔍 Form submitted!"); // DEBUG
-    console.log("🔍 Start Date:", startDate);
-    console.log("🔍 End Date:", endDate);
+    
 
     if (startDate && endDate) {
       console.log("🔍 Calling onFilter...");
