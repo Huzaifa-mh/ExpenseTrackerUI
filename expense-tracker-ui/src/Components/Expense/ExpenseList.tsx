@@ -3,7 +3,11 @@ import { expenseAPI } from '../../service/api';
 import type { Expense } from '../../types/expense';
 import ExpenseCard from './ExpenseCard';
 
-function ExpenseList() {
+interface ExpenseListProps {
+    refreshTrigger: number;
+}
+
+function ExpenseList({ refreshTrigger} : ExpenseListProps) {
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
@@ -11,7 +15,7 @@ function ExpenseList() {
   // Fetch expenses when component mounts
   useEffect(() => {
     fetchExpenses();
-  }, []);
+  }, [refreshTrigger]);
 
   const fetchExpenses = async () => {
     try {
