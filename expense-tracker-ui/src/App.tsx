@@ -3,40 +3,47 @@ import { useState } from 'react';
 import './App.css'
 import AddExpense from './Components/Expense/AddExpense'
 import ExpenseList from './Components/Expense/ExpenseList'
+import CategorySummary from './Components/Summary/CategorySummary';
 
 function App() {
   const [refreshTrigger, setRefreshTrigger] = useState<number>(0);
 
-  // called when the expense is added
   const handleExpenseAdded = () => {
-    setRefreshTrigger(prev => prev + 1); // trigger refresh in ExpenseList
-  }
+    setRefreshTrigger(prev => prev + 1);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="px-8 py-6">
+        <div className="px-6 py-6">
           <h1 className="text-4xl font-bold text-gray-800">
             💰 Personal Expense Tracker
           </h1>
         </div>
       </header>
 
-      {/* Main Content - FULL WIDTH, NO PADDING */}
-      <main className="p-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Main Content */}
+      <main className="px-6 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           
-          {/* Left: Add Expense Form (sticky on scroll) */}
+          {/* Left Column: Add Expense Form (1/4 width) */}
           <div className="lg:col-span-1">
             <div className="lg:sticky lg:top-8">
               <AddExpense onExpenseAdded={handleExpenseAdded} />
             </div>
           </div>
 
-          {/* Right: Expense List */}
+          {/* Middle Column: Expense List (2/4 width) */}
           <div className="lg:col-span-2">
             <ExpenseList refreshTrigger={refreshTrigger} />
+          </div>
+
+          {/* Right Column: Summary (1/4 width) */}
+          <div className="lg:col-span-1">
+            <div className="lg:sticky lg:top-8">
+              <CategorySummary refreshTrigger={refreshTrigger} />
+            </div>
           </div>
 
         </div>
