@@ -4,6 +4,7 @@ import './App.css'
 import AddExpense from './Components/Expense/AddExpense'
 import ExpenseList from './Components/Expense/ExpenseList'
 import CategorySummary from './Components/Summary/CategorySummary';
+import MonthlyTrends from './Components/Summary/MonthlyTrends';
 
 function App() {
   const [refreshTrigger, setRefreshTrigger] = useState<number>(0);
@@ -25,24 +26,25 @@ function App() {
 
       {/* Main Content */}
       <main className="px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-35">
           
-          {/* Left Column: Add Expense Form (1/4 width) */}
+          {/* Column 1: Add Expense Form (1/4 width) */}
           <div className="lg:col-span-1">
-            <div className="lg:sticky lg:top-8">
+            <div className="lg:sticky lg:top-8 space-y-6">
               <AddExpense onExpenseAdded={handleExpenseAdded} />
             </div>
           </div>
 
-          {/* Middle Column: Expense List (2/4 width) */}
+          {/* Column 2: Expense List (2/4 width) */}
           <div className="lg:col-span-2">
             <ExpenseList refreshTrigger={refreshTrigger} />
           </div>
 
           {/* Right Column: Summary (1/4 width) */}
           <div className="lg:col-span-1">
-            <div className="lg:sticky lg:top-8">
+            <div className="lg:sticky lg:top-8 space-y-6">
               <CategorySummary refreshTrigger={refreshTrigger} />
+              <MonthlyTrends refreshTrigger={refreshTrigger} />
             </div>
           </div>
 

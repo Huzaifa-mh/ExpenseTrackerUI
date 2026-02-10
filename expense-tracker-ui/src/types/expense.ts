@@ -30,3 +30,10 @@ export interface ExpenseSummary {
     totalAmount: number,
     expenseCount: number
 }
+
+export interface MonthlySummary {
+    year: number,
+    month: number,
+    totalAmount: number,
+    expenseCount: number
+}

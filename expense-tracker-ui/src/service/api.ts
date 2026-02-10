@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Category, CreateExpenseDTO, Expense, ExpenseSummary } from "../types/expense";
+import type { Category, CreateExpenseDTO, Expense, ExpenseSummary, MonthlySummary } from "../types/expense";
 
 
 
@@ -53,6 +53,11 @@ export const expenseAPI = {
         const response = await api.get<ExpenseSummary[]>('/expenses/summary');
         return response.data;
     },
+
+    async getMonthlySummary(month: number = 6): Promise<MonthlySummary[]> {
+        const response = await api.get<MonthlySummary[]>("/expenses/monthly-summary", {params: {month}});
+        return response.data;
+    }
 
 };
 
