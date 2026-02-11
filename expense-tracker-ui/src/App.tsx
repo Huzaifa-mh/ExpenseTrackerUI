@@ -25,8 +25,8 @@ function App() {
       </header>
 
       {/* Main Content */}
-      <main className="px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <main className="w-full px-6 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-65">
           
           {/* Column 1: Add Expense Form (1/4 width) */}
           <div className="lg:col-span-1">

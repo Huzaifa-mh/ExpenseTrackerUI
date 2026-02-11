@@ -8,6 +8,12 @@ interface MonthlyTrendProps {
   refreshTrigger: number;
 }
 
+// Get month name
+  const getMonthName = (month: number) => {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return months[month - 1];
+  };
+
 function MonthlyTrends({ refreshTrigger }: MonthlyTrendProps) {
   const [data, setData] = useState<MonthlySummary[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -38,11 +44,7 @@ function MonthlyTrends({ refreshTrigger }: MonthlyTrendProps) {
     expenses: item.expenseCount,
   }));
 
-  // Get month name
-  const getMonthName = (month: number) => {
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return months[month - 1];
-  };
+  
 
   // Custom tooltip
   const CustomTooltip = ({ active, payload }: any) => {
@@ -110,7 +112,7 @@ function MonthlyTrends({ refreshTrigger }: MonthlyTrendProps) {
       </div>
 
       {/* Chart */}
-      <div className="h-48 mb-6">
+      <div className="w-full" style={{ height: '200px'}}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
