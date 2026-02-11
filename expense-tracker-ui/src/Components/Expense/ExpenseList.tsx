@@ -5,62 +5,57 @@ import ExpenseCard from "./ExpenseCard";
 import DateFilter from "./DateFilter";
 
 
+
 interface ExpenseListProps {
   refreshTrigger: number;
+  expenses: Expense[];
+  loading: boolean;
+  onDelete: ()=> void;
 }
 
-function ExpenseList({ refreshTrigger }: ExpenseListProps) {
-  const [expenses, setExpenses] = useState<Expense[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+function ExpenseList({ expenses, loading, onDelete }: ExpenseListProps) {
+  
+  const[filteredExpenses, setFilteredExpenses] = useState<Expense[]>([]);
+  const [isFiltering, setIsFiltering] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-  const [dateFilter, setDateFilter] = useState<{
-    startDate?: string;
-    endDate?: string;
-  }>({});
 
-  // Fetch expenses when component mounts
-  useEffect(() => {
-    fetchExpenses();
-  }, [refreshTrigger, dateFilter]);
 
-  const fetchExpenses = async () => {
-    try {
-      setLoading(true);
-      console.log("Fetching expenses with filter:",{start: dateFilter.startDate, end: dateFilter.endDate});
-      const data = await expenseAPI.getExpenses(
-        dateFilter.startDate,
-        dateFilter.endDate
-      );
-      setExpenses(data);
 
-      console.log("Fetched expenses:", data);
+  const displayExpenses = isFiltering ? filteredExpenses : expenses;
+  
+
+  const handleFilter = async (startDate: string, endDate: string) => {
+    try{
+      setIsFiltering(true);
+      const data = await expenseAPI.getExpenses(startDate, endDate);
+      setFilteredExpenses(data);
       setError("");
-    } catch (err) {
-      console.error("Error fetching expenses:", err);
-      setError("Failed to load expenses");
-    } finally {
-      setLoading(false);
+    }catch(err){
+      console.error("Error filtering expenses:", err);
+      setError("Failed to filter expenses");
     }
   };
+
+  const handleClearFilter = () => {
+    setIsFiltering(false);
+    setFilteredExpenses([]);
+    setError("");
+  };
+
+
 
   const handleDelete = async (id: number) => {
     try {
       await expenseAPI.deleteExpense(id);
       // Refresh the list after successful deletion
-      await fetchExpenses();
+      onDelete();
     } catch (err) {
       console.error("Error deleting expense:", err);
       alert("Failed to delete expense. Please try again.");
     }
   };
 
-  const handleFilter = (startDate: string, endDate: string) => {
-    setDateFilter({ startDate, endDate });
-  };
 
-  const handleClearFilter = () => {
-    setDateFilter({});
-  };
 
   // Loading state
   if (loading) {
