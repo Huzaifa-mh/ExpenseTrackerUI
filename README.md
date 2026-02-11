@@ -308,7 +308,7 @@ This project is open source and available under the [MIT License](LICENSE).
 **Muhammad Huzaifa**
 
 - GitHub: [@Huzaifa-mh](https://github.com/Huzaifa-mh)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/muhammadhuzaifamh)
 
 ---
 
@@ -361,7 +361,7 @@ Check out the demo video below! 👇
 The app updates instantly when you add or delete expenses. No page refresh needed!
 
 🔗 GitHub (Backend): https://github.com/Huzaifa-mh/ExpenseTrackerAPI
-🔗 GitHub (Frontend): [Your link]
+🔗 GitHub (Frontend): [https://github.com/Huzaifa-mh/ExpenseTrackerUI]
 🔗 Live Demo: [Coming soon after deployment]
 
 Would love your feedback! What features would YOU want in an expense tracker?
