@@ -115,7 +115,7 @@ function App() {
 
       {/* Main Content */}
       <main className="w-full px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-42">
+        <div className="grid grid-cols-1 lg:grid-cols-19 gap-9">
           {/* Column 1: Add Expense Form (1/4 width) */}
           <div className="lg:col-span-3">
             <div className="lg:sticky lg:top-8 space-y-6">
@@ -124,7 +124,7 @@ function App() {
           </div>
 
           {/* Column 2: Expense List (2/4 width) */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-8">
             <ExpenseList refreshTrigger={refreshTrigger}
             expenses={expenses}
             loading={loading}
@@ -132,9 +132,15 @@ function App() {
           </div>
 
           {/* Right Column: Summary (1/4 width) */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-8 space-y-6">
               <CategorySummary refreshTrigger={refreshTrigger} />
+              {/* <MonthlyTrends refreshTrigger={refreshTrigger} /> */}
+            </div>
+          </div>
+
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-8 space-y-6">
               <MonthlyTrends refreshTrigger={refreshTrigger} />
             </div>
           </div>

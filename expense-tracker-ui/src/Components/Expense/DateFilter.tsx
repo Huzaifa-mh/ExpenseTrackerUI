@@ -84,7 +84,7 @@ function DateFilter({ onFilter, onClear }: DateFilterProps) {
           <button
             type="button"
             onClick={handleClear}
-            className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium transition-colors"
+            className="px-6 py-2 bg-gray-200 text-white rounded-lg hover:bg-gray-500 font-medium transition-colors"
           >
             Clear
           </button>

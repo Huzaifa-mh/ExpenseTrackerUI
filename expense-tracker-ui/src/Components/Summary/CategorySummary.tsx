@@ -133,7 +133,7 @@ function CategorySummary({ refreshTrigger }: CategorySummaryProps) {
       </div>
 
       {/* Category List */}
-      <div className="space-y-3 max-h-64 overflow-y-auto">
+      <div className="space-y-3 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
         {summary.map((item) => {
           const percentage = totalSpending > 0 
             ? (item.totalAmount / totalSpending) * 100 
