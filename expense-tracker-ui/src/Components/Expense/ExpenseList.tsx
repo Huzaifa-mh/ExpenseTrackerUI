@@ -12,57 +12,61 @@ interface ExpenseListProps {
   loading: boolean;
   onDelete: ()=> void;
 }
+interface ExpenseListProps {
+  refreshTrigger: number;
+}
 
-function ExpenseList({ expenses, loading, onDelete }: ExpenseListProps) {
-  
-  const[filteredExpenses, setFilteredExpenses] = useState<Expense[]>([]);
-  const [isFiltering, setIsFiltering] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
+function ExpenseList({ refreshTrigger }: ExpenseListProps) {
+  const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
+  const [dateFilter, setDateFilter] = useState<{ startDate?: string; endDate?: string }>({});
 
+  // Fetch expenses when component mounts, refreshTrigger changes, OR filter changes
+  useEffect(() => {
+    fetchExpenses();
+  }, [refreshTrigger, dateFilter]);
 
-
-  const displayExpenses = isFiltering ? filteredExpenses : expenses;
-  
-
-  const handleFilter = async (startDate: string, endDate: string) => {
-    try{
-      setIsFiltering(true);
-      const data = await expenseAPI.getExpenses(startDate, endDate);
-      setFilteredExpenses(data);
-      setError("");
-    }catch(err){
-      console.error("Error filtering expenses:", err);
-      setError("Failed to filter expenses");
+  const fetchExpenses = async () => {
+    try {
+      setLoading(true);
+      const data = await expenseAPI.getExpenses(dateFilter.startDate, dateFilter.endDate);
+      setExpenses(data);
+      setError('');
+    } catch (err) {
+      console.error('Error fetching expenses:', err);
+      setError('Failed to load expenses');
+    } finally {
+      setLoading(false);
     }
   };
-
-  const handleClearFilter = () => {
-    setIsFiltering(false);
-    setFilteredExpenses([]);
-    setError("");
-  };
-
-
 
   const handleDelete = async (id: number) => {
     try {
       await expenseAPI.deleteExpense(id);
-      // Refresh the list after successful deletion
-      onDelete();
+      await fetchExpenses();
     } catch (err) {
-      console.error("Error deleting expense:", err);
-      alert("Failed to delete expense. Please try again.");
+      console.error('Error deleting expense:', err);
+      alert('Failed to delete expense. Please try again.');
     }
   };
 
+  const handleFilter = (startDate: string, endDate: string) => {
+    setDateFilter({ startDate, endDate });
+  };
 
+  const handleClearFilter = () => {
+    setDateFilter({});
+  };
 
   // Loading state
   if (loading) {
     return (
-      <div className="max-w-2xl mx-auto text-center py-8">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-        <p className="text-gray-600 mt-4">Loading expenses...</p>
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="text-center py-8">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="text-gray-600 mt-4">Loading expenses...</p>
+        </div>
       </div>
     );
   }
@@ -70,7 +74,7 @@ function ExpenseList({ expenses, loading, onDelete }: ExpenseListProps) {
   // Error state
   if (error) {
     return (
-      <div className="max-w-2xl mx-auto">
+      <div className="bg-white rounded-lg shadow-md p-6">
         <div className="bg-red-100 border-l-4 border-red-500 text-red-700 px-4 py-3 rounded">
           <p className="font-medium">Error</p>
           <p>{error}</p>
@@ -79,39 +83,50 @@ function ExpenseList({ expenses, loading, onDelete }: ExpenseListProps) {
     );
   }
 
-  // Empty state
-  if (expenses.length === 0) {
-    return (
-      <div className="max-w-2xl mx-auto">
-        <div className="bg-blue-50 border-l-4 border-blue-500 text-blue-700 px-4 py-3 rounded">
-          <p className="font-medium">No expenses yet</p>
-          <p>Add your first expense using the form above!</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Display expenses
   return (
     <div>
+      {/* Date Filter */}
       <DateFilter onFilter={handleFilter} onClear={handleClearFilter} />
-      <div className="bg-white rounded-lg shadow-md p-6 ">
+
+      {/* Expense List */}
+      <div className="bg-white rounded-lg shadow-md p-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">📋 Your Expenses</h2>
-          <span className="text-sm text-gray-600">
-            {expenses.length} {expenses.length === 1 ? "expense" : "expenses"}
-          </span>
+          <h2 className="text-2xl font-bold text-gray-800">
+            📋 Your Expenses
+          </h2>
+          <div className="text-right">
+            <span className="text-sm text-gray-600 block">
+              {expenses.length} {expenses.length === 1 ? 'expense' : 'expenses'}
+            </span>
+            {dateFilter.startDate && dateFilter.endDate && (
+              <span className="text-xs text-blue-600 block mt-1">
+                Filtered: {dateFilter.startDate} to {dateFilter.endDate}
+              </span>
+            )}
+          </div>
         </div>
 
-        <div className="space-y-3">
-          {expenses.map((expense) => (
-            <ExpenseCard
-              key={expense.id}
-              expense={expense}
-              onDelete={handleDelete}
-            />
-          ))}
-        </div>
+        {/* Empty state */}
+        {expenses.length === 0 ? (
+          <div className="bg-blue-50 border-l-4 border-blue-500 text-blue-700 px-4 py-3 rounded">
+            <p className="font-medium">No expenses found</p>
+            <p>
+              {dateFilter.startDate 
+                ? 'Try adjusting your date filter or add new expenses.' 
+                : 'Add your first expense using the form on the left!'}
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {expenses.map((expense) => (
+              <ExpenseCard
+                key={expense.id}
+                expense={expense}
+                onDelete={handleDelete}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
