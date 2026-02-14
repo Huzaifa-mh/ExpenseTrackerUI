@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { expenseAPI } from '../../service/api';
 import type { ExpenseSummary } from '../../types/expense';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 interface CategorySummaryProps {
   refreshTrigger: number;
