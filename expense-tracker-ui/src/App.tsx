@@ -63,7 +63,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b-2 border-blue-500">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b-2 border-blue-500">
         <div className="max-w-[2200px] mx-auto px-10 py-5">
           <div className="flex items-center justify-between">
             {/* Left: Logo & Title */}
@@ -94,27 +94,27 @@ function App() {
             </div>
 
             {/* Right: User Info (Optional) */}
-            <div className="hidden md:flex items-center gap-6">
+            <div className="stats-container flex items-center gap-6">
               <div className="text-right">
-                <p className="text-gray-600 text-xs uppercase tracking-wide">
+                <p className="label text-gray-600 text-xs uppercase tracking-wide">
                   This Month
                 </p>
-                <p className="text-blue-600 text-2xl font-bold">${headerStats.thisMonthTotal.toFixed(2)}</p>
+                <p className="amount text-blue-600 text-2xl font-bold">${headerStats.thisMonthTotal.toFixed(2)}</p>
               </div>
               <div className="h-12 w-px bg-blue-400"></div>
               <div className="text-right">
-                <p className="text-gray-600 text-xs uppercase tracking-wide">
+                <p className="label text-gray-600 text-xs uppercase tracking-wide">
                   Total Expenses
                 </p>
-                <p className="text-blue-600 text-2xl font-bold">{headerStats.totalExpenses}</p>
+                <p className="amount text-blue-600 text-2xl font-bold">{headerStats.totalExpenses}</p>
               </div>
             </div>
           </div>
         </div>
       </header>
-
+      <div className="header-spacer"/>
       {/* Main Content */}
-      <main className="w-full px-6 py-8">
+      <main className=" w-full px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-19 gap-9">
           {/* Column 1: Add Expense Form (1/4 width) */}
           <div className="lg:col-span-3">

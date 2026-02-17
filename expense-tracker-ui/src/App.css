@@ -57,3 +57,95 @@ body {
 input, select, textarea {
   color: #1f2937; /* gray-900 */
 }
+/* ── FIXED HEADER ── */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+/* ── SPACER to prevent content hiding behind fixed header ── */
+.header-spacer {
+  height: 100px;
+}
+
+/* ── MOBILE (up to 640px) ── */
+@media (max-width: 640px) {
+
+  /* Shrink header padding */
+  header .max-w-\[2200px\] {
+    padding: 8px 12px !important;
+  }
+
+  /* Shrink logo icon */
+  header svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  header .rounded-xl {
+    padding: 6px !important;
+  }
+
+  /* Shrink title */
+  header h1 {
+    font-size: 0.95rem !important;
+  }
+
+  /* Hide subtitle */
+  header p.text-sm {
+    display: none !important;
+  }
+
+  /* Shrink gap between logo and title */
+  header .flex.items-center.gap-4 {
+    gap: 8px !important;
+  }
+
+  /* Stats container */
+  header .stats-container {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+    align-items: center;
+  }
+
+  /* Shrink divider line */
+  header .stats-container .h-12 {
+    height: 24px !important;
+  }
+
+  /* Shrink stat labels */
+  header .stats-container .label {
+    font-size: 8px !important;
+  }
+
+  /* Shrink stat amounts */
+  header .stats-container .amount {
+    font-size: 0.85rem !important;
+  }
+
+  .header-spacer {
+    height: 90px;
+  }
+}
+
+/* ── TABLET (641px to 1024px) ── */
+@media (min-width: 641px) and (max-width: 1024px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  main .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .header-spacer {
+    height: 100px;
+  }
+}
