@@ -4,7 +4,7 @@ import type { Category, CreateExpenseDTO, Expense, ExpenseSummary, MonthlySummar
 
 
 //API base URL
-const API_BASE_URL = "https://localhost:7026/api";
+const API_BASE_URL = "https://expense-api-drhygdgseaedcngx.eastasia-01.azurewebsites.net/api";
 
 const api= axios.create({
     baseURL: API_BASE_URL,
