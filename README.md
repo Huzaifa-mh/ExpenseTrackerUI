@@ -305,7 +305,7 @@ Verify frontend origin is in the CORS policy in `Program.cs`
 **Muhammad Huzaifa**
 
 - GitHub: [@Huzaifa-mh](https://github.com/Huzaifa-mh)
-- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/muhammadhuzaifamh)
+- LinkedIn: [Muhammad Huzaifa](https://www.linkedin.com/in/muhammadhuzaifamh)
 
 ---
 
