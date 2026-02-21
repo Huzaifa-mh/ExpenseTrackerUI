@@ -7,7 +7,7 @@ A RESTful API built with ASP.NET Core for tracking personal expenses. Features i
 ## 🔗 Links
 
 - **Backend Repository**: [expense-tracker-ui](#) _(https://github.com/Huzaifa-mh/ExpenseTrackerAPI)_
-- **Live API**: [Coming Soon](#) _(https://jolly-flower-05e8c1900.4.azurestaticapps.net/)_
+- **Live API**: (#) _(https://jolly-flower-05e8c1900.4.azurestaticapps.net/)_
 - **API Documentation**: Available via Swagger at `/swagger`
 
 ## ✨ Features
