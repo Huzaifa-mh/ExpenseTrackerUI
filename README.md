@@ -1,4 +1,4 @@
-# 💰 Personal Expense Tracker - Backend API
+# 💰 Personal Expense Tracker 
 
 A RESTful API built with ASP.NET Core for tracking personal expenses. Features include expense management, category-based organization, date filtering, and spending analytics.
 
@@ -6,8 +6,8 @@ A RESTful API built with ASP.NET Core for tracking personal expenses. Features i
 
 ## 🔗 Links
 
-- **Frontend Repository**: [expense-tracker-ui](#) _(Add your frontend repo link)_
-- **Live API**: [Coming Soon](#) _(Add after deployment)_
+- **Backend Repository**: [expense-tracker-ui](#) _(https://github.com/Huzaifa-mh/ExpenseTrackerAPI)_
+- **Live API**: [Coming Soon](#) _(https://jolly-flower-05e8c1900.4.azurestaticapps.net/)_
 - **API Documentation**: Available via Swagger at `/swagger`
 
 ## ✨ Features
@@ -30,7 +30,7 @@ A RESTful API built with ASP.NET Core for tracking personal expenses. Features i
 
 ## 🛠️ Tech Stack
 
-- **Framework**: ASP.NET Core 8.0
+- **Framework**: ASP.NET Core
 - **Language**: C# 12
 - **Database**: SQL Server
 - **ORM**: Entity Framework Core
@@ -39,7 +39,7 @@ A RESTful API built with ASP.NET Core for tracking personal expenses. Features i
 
 ## 📋 Prerequisites
 
-- .NET 8.0 SDK
+- .NET 
 - SQL Server (LocalDB, Express, or Developer Edition)
 - Visual Studio 2022 or VS Code with C# extension
 
@@ -299,9 +299,6 @@ Verify frontend origin is in the CORS policy in `Program.cs`
 - [ ] Budget management endpoints
 - [ ] Recurring expenses
 
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
 
 ## 👨‍💻 Author
 
@@ -313,58 +310,9 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 ⭐ Star this repository if you find it helpful!
-```
-
----
-
-# 📱 LINKEDIN POST (Short Version)
-```
-Ever lost track of where your money went? 💸
-
-I built a solution! 🚀
-
-THE PROBLEM:
-"I had $800 last week... where did it all go??"
-
-Most of us struggle to track daily spending. By month's end, money disappears without a trace.
-
-MY SOLUTION:
-A full-stack Expense Tracker that helps you:
-✅ Track every expense instantly
-✅ Categorize spending automatically
-✅ Visualize where money actually goes
-✅ Filter by date ranges
-✅ See monthly trends at a glance
-
-TECH STACK:
-🔹 Backend: ASP.NET Core 8 + SQL Server
-🔹 Frontend: React + TypeScript + Tailwind CSS
-🔹 Charts: Recharts for interactive visualizations
-🔹 Architecture: RESTful API with clean separation
-
-KEY FEATURES:
-📊 Real-time dashboard with spending statistics
-🎨 Interactive pie charts for category breakdown
-📈 Monthly trend analysis with line charts
-🔍 Smart date filtering
-💾 7 pre-configured spending categories
-
-WHAT I LEARNED:
-→ Building RESTful APIs with Entity Framework
-→ React state management & component architecture
-→ TypeScript for type-safe development
-→ Real-time data synchronization
-→ Interactive data visualization
-
-Check out the demo video below! 👇
-
-The app updates instantly when you add or delete expenses. No page refresh needed!
 
 🔗 GitHub (Backend): https://github.com/Huzaifa-mh/ExpenseTrackerAPI
 🔗 GitHub (Frontend): [https://github.com/Huzaifa-mh/ExpenseTrackerUI]
-🔗 Live Demo: [Coming soon after deployment]
-
-Would love your feedback! What features would YOU want in an expense tracker?
-
-#WebDevelopment #ASPNETCore #React #TypeScript #FullStack #SoftwareEngineering #CSharp #PersonalFinance #100DaysOfCode #TechProject
+🔗 Live Demo: [https://jolly-flower-05e8c1900.4.azurestaticapps.net/]
 ```
+
